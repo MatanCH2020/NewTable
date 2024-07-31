@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מעקב נקודות ילדים משודרג</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: right;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        button, input, select {
+            margin: 5px;
+            padding: 8px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #settings {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+        .taskItem {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+        }
+        .removeTask {
+            color: #e74c3c;
+            cursor: pointer;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #ecf0f1;
+            padding: 3px;
+            border-radius: 3px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
+            margin-bottom: 10px;
+        }
+        .progress-bar-fill {
+            display: block;
+            height: 22px;
+            background-color: #2ecc71;
+            border-radius: 3px;
+            transition: width 500ms ease-in-out;
+        }
+        .chart-container {
+            width: 300px;
+            height: 300px;
+            margin: 10px auto;
+        }
+        .summary-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .summary-child {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+        .deleteRow {
+            color: red;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>מעקב נקודות ילדים משודרג</h1>
+    
+    <h2>הוספת נקודות</h2>
+    <select id="childSelect">
+        <option value="נועם">נועם</option>
+        <option value="עמית">עמית</option>
+    </select>
+    <select id="taskSelect"></select>
+    <button onclick="addPoints()">הוסף נקודות</button>
+
+    <h2>טבלת נקודות</h2>
+    <table id="pointsTable">
+        <tr>
+            <th>ילד</th>
+            <th>משימה</th>
+            <th>נקודות</th>
+            <th>תאריך</th>
+            <th>פעולות</th>
+        </tr>
+    </table>
+
+    <h2>סיכום</h2>
+    <div class="summary-section">
+        <div id="noamSummary" class="summary-child">
+            <h3>נועם</h3>
+            <p><span id="noamTotal">0</span> נקודות (<span id="noamMoney">0</span> ₪)</p>
+            <div class="progress-bar">
+                <span id="noamProgress" class="progress-bar-fill" style="width: 0%;"></span>
+            </div>
+            <p>התקדמות לפרס הבא: <span id="noamProgressText">0</span>%</p>
+            <div class="chart-container">
+                <canvas id="noamChart"></canvas>
+            </div>
+        </div>
+        <div id="amitSummary" class="summary-child">
+            <h3>עמית</h3>
+            <p><span id="amitTotal">0</span> נקודות (<span id="amitMoney">0</span> ₪)</p>
+            <div class="progress-bar">
+                <span id="amitProgress" class="progress-bar-fill" style="width: 0%;"></span>
+            </div>
+            <p>התקדמות לפרס הבא: <span id="amitProgressText">0</span>%</p>
+            <div class="chart-container">
+                <canvas id="amitChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="toggleSettings()">הגדרות</button>
+
+    <div id="settings">
+        <h3>ניהול מטלות</h3>
+        <div id="taskList"></div>
+
+        <h3>הוספת מטלה חדשה</h3>
+        <input type="text" id="newTaskName" placeholder="שם המטלה">
+        <input type="number" id="newTaskPoints" placeholder="מספר נקודות">
+        <button onclick="addNewTask()">הוסף מטלה</button>
+    </div>
+
+    <div id="debug"></div>
+
+    <script>
+        // JavaScript code will be added here in Part 2
+    </script>
+</body>
+</html>
